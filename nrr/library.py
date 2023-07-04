@@ -13,7 +13,7 @@ class FunctionOrClass: # also called elements
 
     def generate_description(self):
         prompt = f"Let's dive into a {self.type} named '{self.name}'. Based on its code, can you tell me its purpose?\n{self.code}"
-        self.description_gpt = call_gpt4(prompt)  # replace call_gpt4 with your GPT-4 function
+        self.description_gpt = call_gpt4(prompt, origin=f"{self.type}_{self.name}")
 
 class Module:
     def __init__(self, name, code):
@@ -30,7 +30,7 @@ class Module:
             element.generate_description()
         element_descriptions = "\n".join([f"{element.type.capitalize()}: {element.description_gpt}" for element in self.elements])
         prompt = f"We are looking at a module named '{self.name}'. It consists of the following:\n{element_descriptions}\nCan you summarize what the entire module does based on these elements?\n{self.code}"
-        self.description_gpt = call_gpt4(prompt)  # replace call_gpt4 with your GPT-4 function
+        self.description_gpt = call_gpt4(prompt, origin=f"module_{self.name}")
 
 class File:
     def __init__(self, name, code):
@@ -47,7 +47,7 @@ class File:
             module.generate_description()
         module_descriptions = "\n".join([f"Module: {module.description_gpt}" for module in self.modules])
         prompt = f"Let's examine a Python file named '{self.name}'. It comprises the following modules:\n{module_descriptions}\nCan you give a summary of what the entire file accomplishes?\n{self.code}"
-        self.description_gpt = call_gpt4(prompt)  # replace call_gpt4 with your GPT-4 function
+        self.description_gpt = call_gpt4(prompt, origin=f"file_{self.name}")
 
 class Folder:
     def __init__(self, name):
@@ -70,7 +70,7 @@ class Folder:
         file_descriptions = "\n".join([f"File: {file.description_gpt}" for file in self.files])
         folder_descriptions = "\n".join([f"Sub-folder: {folder.description_gpt}" for folder in self.folders])
         prompt = f"We're exploring a folder named '{self.name}'. It contains these files and sub-folders:\n{file_descriptions}\n{folder_descriptions}\nCan you summarize the overall functionality of this folder?"
-        self.description_gpt = call_gpt4(prompt)  # replace call_gpt4 with your GPT-4 function
+        self.description_gpt = call_gpt4(prompt, origin=f"folder_{self.name}")
 
 class Library:
     def __init__(self, name, repo_url):
@@ -163,7 +163,7 @@ class Library:
                     gpt_prompt += f"\n        {element.type.capitalize()}: {element.name} - {element.description_gpt}"
         gpt_prompt += "\nPlease describe the overall functionality and purpose of this library."
         # Calling GPT-4 for library description
-        self.description_gpt = None #implement
+        self.description_gpt = call_gpt4(gpt_prompt, origin=f"library_{self.name}")
         # Including the GPT-4 description in the library overview
         overview += f"\n\nGPT-4 Description of the Library: {self.description_gpt}"
         return overview
