@@ -1,6 +1,5 @@
 import os
 import openai
-import langchain
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 gpt_model = os.getenv('MODEL_SMART')

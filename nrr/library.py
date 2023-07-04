@@ -3,7 +3,7 @@ import importlib.util
 import subprocess
 import tempfile
 import ast
-from .openai_api import call_gpt4
+from openai_api import call_gpt4
 
 class FunctionOrClass: # also called elements
     def __init__(self, name, type_, description, code):
