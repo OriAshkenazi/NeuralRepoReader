@@ -9,7 +9,10 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 gpt_model = os.getenv('MODEL_SMART')
 embedding_model = os.getenv('EMBEDDING_MODEL')
 
-def call_gpt4(prompt):
+import logging
+
+def call_gpt4(prompt, origin):
+    logging.info(f"GPT-4 call from {origin} with prompt: {prompt}")
     response = openai.ChatCompletion.create(
         model=gpt_model,
         messages=[
@@ -17,8 +20,6 @@ def call_gpt4(prompt):
             {"role": "user", "content": prompt},
         ]
     )
-    # Log the call and full response
-    logging.info(f"Call: {prompt}\nResponse: {response}")
-    # The assistant's reply will be in the last message's 'content'
     reply = response['choices'][0]['message']['content']
+    logging.info(f"GPT-4 response from {origin}\nCall: {prompt}\nResponse: {reply}")
     return reply
