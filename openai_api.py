@@ -20,8 +20,8 @@ def call_gpt4(prompt, origin):
         ]
     )
     # Log the call and the full response
-    logging.info(f"GPT-4 call from {origin} with prompt: {prompt}")
-    logging.info(f"Full response: {response}")
+    logging.info(f"GPT-4 call from:\n{origin}\n\nwith prompt:\n{prompt}\n\n\n")
+    logging.info(f"Full response:\n{response}\n\n\n")
 
     # The assistant's reply will be in the last message's 'content'
     reply = response['choices'][0]['message']['content']
