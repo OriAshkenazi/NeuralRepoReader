@@ -3,6 +3,7 @@ import inspect
 import importlib.util
 import subprocess
 import tempfile
+import ast
 
 class FunctionOrClass:
     def __init__(self, name, type_, description):
@@ -73,10 +74,15 @@ class Library:
         # Create a module and add it to the file
         module = Module(file_name)
         file.set_module(module)
-        # Iterate over all classes and functions in the module
-        for name, obj in inspect.getmembers(module_obj):
-            if inspect.isclass(obj) or inspect.isfunction(obj):
-                element = FunctionOrClass(name, type(obj).__name__, obj.__doc__)
+        # Use AST to iterate over all classes and functions in the module
+        tree = ast.parse(open(path).read())
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.FunctionDef, ast.ClassDef)):
+                name = node.name
+                type_ = type(node).__name__
+                # TODO: You might want to extract a description from the docstring or elsewhere
+                description = ast.get_docstring(node)
+                element = FunctionOrClass(name, type_, description)
                 module.add_element(element)
         return file
 
@@ -98,3 +104,4 @@ class Library:
                 for element in module.elements:
                     overview += f"        {element.type.capitalize()}: {element.name}\n"
         return overview
+
