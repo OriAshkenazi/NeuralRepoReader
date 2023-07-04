@@ -1,5 +1,4 @@
 import os
-import importlib.util
 import git
 import ast
 from openai_api import call_gpt4
@@ -115,15 +114,11 @@ class Library:
         with open(path, 'r') as file_obj:
             file_code = file_obj.read()
         file = File(file_name, file_code)
-        # Import the module from the given file
-        spec = importlib.util.spec_from_file_location(file_name, path)
-        module_obj = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module_obj)
+        # Use AST to iterate over all classes and functions in the file
+        tree = ast.parse(file_code)
         # Create a module and add it to the file
         module = Module(file_name, file_code)
         file.set_module(module)
-        # Use AST to iterate over all classes and functions in the module
-        tree = ast.parse(file_code)
         for node in ast.walk(tree):
             if isinstance(node, (ast.FunctionDef, ast.ClassDef)):
                 name = node.name
@@ -134,6 +129,7 @@ class Library:
                 element = FunctionOrClass(name, type_, description, element_code)
                 module.add_element(element)
         return file
+
 
     def get_overview(self):
         # Generating GPT-4 descriptions for files in the root of the library

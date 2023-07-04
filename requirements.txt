@@ -1,4 +1,2 @@
 openai
-importlib
-ast
-git
+python-dotenv
