@@ -379,3 +379,4 @@ $RECYCLE.BIN/
 
 # Ignore NRR files
 /repos/
+gpt4_calls.log
