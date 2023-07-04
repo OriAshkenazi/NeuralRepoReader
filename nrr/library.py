@@ -90,7 +90,10 @@ class Library:
             git.Repo.clone_from(repo_url, self.root)
 
     def _populate(self):
+        script_directory = os.path.dirname(os.path.abspath(__file__))  # directory of the script itself
         for root_, dirs, files in os.walk(self.root):
+            if root_ == script_directory:  # ignore the script's directory
+                continue
             if '.git' in dirs: 
                 dirs.remove('.git')  # don't visit .git directories
             relative_root = os.path.relpath(root_, self.root)
@@ -105,6 +108,7 @@ class Library:
                     file_path = os.path.join(root_, file_name)
                     file = self._create_file(file_path)
                     current_folder.files.append(file)
+
 
     def _create_file(self, path):
         file_name = os.path.basename(path)
