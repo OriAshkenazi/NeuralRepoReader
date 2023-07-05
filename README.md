@@ -1,10 +1,18 @@
 # NeuralRepoReader
-NeuralRepoReader (NRR) is an innovative tool powered by GPT-4, OpenAI's advanced generative language model. NRR parses and decodes code repositories, turning them into detailed, digestible descriptions of the project's structure and functionality. This isn't just a tool for humans - the generated descriptions are designed to be compatible with Large Language Models (LLMs), providing them with rich, structured context about the code.
+🚀 It all started with one prompt: "When describing a code library to an LLM, what context is important to give it? Code is a graph, and LLMs are designed to comprehend linear streams of text. Try to formulate an approach that can be methodically executed using Python code. Ask me questions to make sure you fully understand my needs." Fast forward 12 hours later, the NeuralRepoReader (NRR) was born.
 
-Simply provide a link to your repository, and NRR will deliver an extensive overview. It's perfect for new contributors trying to familiarize themselves with a codebase, teams conducting code reviews, or anyone generating documentation. It's like having an experienced developer guide you through the codebase but without any scheduling conflicts or time constraints.
+👨‍💻👩‍💻 NRR is a groundbreaking tool, powered by GPT-4, OpenAI's advanced generative language model. But NRR is not just a tool; it's a major enhancement to the gpt-engineer platform. It parses and decodes code repositories, translating them into detailed, digestible descriptions of the project's structure and functionality.
 
-NRR can analyze Python projects and libraries directly from their repository links. The output? Comprehensive overviews feed directly into LLMs, enhancing code comprehension for both humans and AI.
+🔍 With NRR, you input the link to your repository, and it provides you with an extensive overview. This powerful capability makes it perfect for new contributors trying to familiarize themselves with a codebase, teams conducting code reviews, or anyone needing to generate documentation. It's like having an experienced developer guiding you through the codebase but without any time constraints or scheduling conflicts.
 
-Future updates will expand NRR's capabilities to other programming languages, making it an even more versatile tool for developers and AI systems.
+🏗️ The creation of the NRR is aimed at making the gpt-engineer platform an even more effective solution for software developers. By allowing the agent to understand existing code libraries and manage context while navigating them, we're laying the groundwork for a new level of interaction between AI and code.
 
-From beginners learning from open source projects to seasoned developers exploring new repositories, to AI systems needing structured code context - NRR caters to everyone. Start exploring codebases with the power of NeuralRepoReader today!
+🐍 At present, NRR can analyze Python projects and libraries directly from their repository links. The output? Comprehensive overviews that are directly fed into LLMs, enhancing code comprehension for both humans and AI.
+
+⏭️ But we're not stopping there! Future updates will broaden NRR's capabilities to other programming languages, making it an even more adaptable tool for developers and AI systems.
+
+🌏 Whether you're a beginner delving into open-source projects, a seasoned developer exploring new repositories, or an AI system requiring structured code context - NRR is for everyone.
+
+🎈 Join us today in revolutionizing code exploration with NeuralRepoReader! Explore the repo here: https://github.com/OriAshkenazi/NeuralRepoReader. And check out the improved gpt-engineer platform here: https://github.com/AntonOsika/gpt-engineer
+
+#OpenAI #GPT4 #NeuralRepoReader #AI #Python #CodeAnalysis #CodingTools #CodeReview #gpt-engineer #OpenSource
